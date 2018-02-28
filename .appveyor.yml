@@ -1,0 +1,20 @@
+clone_folder: c:\gopath\src\github.com\kubernetes-incubator/cri-tools
+image: Visual Studio 2017
+
+environment:
+  GOPATH: c:\gopath
+
+install:
+  - echo %PATH%
+  - echo %GOPATH%
+  - set PATH=%GOPATH%\bin;c:\go\bin;%PATH%
+  - go version
+  - go env
+  - docker version
+
+build: off
+
+test_script:
+  - ps: |
+      make
+
