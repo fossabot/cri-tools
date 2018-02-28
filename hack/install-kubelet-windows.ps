@@ -13,5 +13,5 @@
 # limitations under the License.
 
 # Install kubelet
-docker run -v /c/bin:/data --rm golang sh -c '! go get -d k8s.io/kubernetes && cd /go/src/k8s.io/kubernetes && KUBE_BUILD_PLATFORMS=windows/amd64 make WHAT=cmd/kubelet && cp _output/local/bin/windows/amd64/kubelet.exe /data'
+docker run -v /c/bin:/data --rm golang sh -c '! go get -d k8s.io/kubernetes && cd /go/src/k8s.io/kubernetes && make WHAT=cmd/kubelet && KUBE_BUILD_PLATFORMS=windows/amd64 make WHAT=cmd/kubelet && cp _output/local/bin/windows/amd64/kubelet.exe /data'
 
