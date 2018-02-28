@@ -11,6 +11,7 @@ install:
   - go version
   - go env
   - docker version
+  - choco install make
 
 build: off
 
