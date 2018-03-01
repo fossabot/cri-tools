@@ -12,7 +12,7 @@ install:
   - go env
   - docker version
   - choco install make
-  - ps: install-kubelet-windows.ps
+  - install-kubelet-windows.ps1
 
 build: off
 
