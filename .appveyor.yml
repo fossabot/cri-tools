@@ -11,7 +11,8 @@ install:
   - go version
   - go env
   - docker version
-  - cinst make
+  - choco upgrade chocolatey
+  - choco install -y make
   - powershell hack/install-kubelet-windows.ps1
 
 build: off
