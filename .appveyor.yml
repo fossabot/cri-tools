@@ -13,11 +13,10 @@ install:
   - docker version
   - choco upgrade chocolatey
   - choco install -y make
-  - powershell hack/install-kubelet-windows.ps1
+  - hack/install-kubelet-windows.cmd
 
 build: off
 
 test_script:
-  - ps: |
-      make
+  - make
 
