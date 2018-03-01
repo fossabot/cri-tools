@@ -11,8 +11,8 @@ install:
   - go version
   - go env
   - docker version
-  - choco install make
-  - install-kubelet-windows.ps1
+  - copy c:\MinGW\bin\mingw32-make.exe c:\MinGW\bin\make.exe
+  - hack/install-kubelet-windows.ps1
 
 build: off
 
