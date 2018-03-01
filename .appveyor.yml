@@ -11,8 +11,10 @@ install:
   - go version
   - go env
   - docker version
-  - copy c:\MinGW\bin\mingw32-make.exe c:\MinGW\bin\make.exe
-  - hack/install-kubelet-windows.ps1
+  - ps: ls C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1
+  - ps: ls C:\mingw-w64
+  - copy c:\mingw-w64\bin\mingw32-make.exe c:\MinGW\bin\make.exe
+  - powershell hack/install-kubelet-windows.ps1
 
 build: off
 
