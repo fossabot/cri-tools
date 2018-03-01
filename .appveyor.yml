@@ -15,4 +15,5 @@ install:
 build: off
 
 test_script:
+  - cd c:\gopath\src\github.com\kubernetes-incubator/cri-tools
   - make
