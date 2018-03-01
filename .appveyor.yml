@@ -5,12 +5,9 @@ environment:
   GOPATH: c:\gopath
 
 install:
-  - echo %PATH%
-  - echo %GOPATH%
-  - set PATH=%GOPATH%\bin;c:\go\bin;%PATH%
   - go version
-  - go env
   - docker version
+  - set PATH=%GOPATH%\bin;%PATH%
   - choco upgrade chocolatey
   - choco install -y make
   - hack/install-kubelet-windows.cmd
@@ -19,4 +16,3 @@ build: off
 
 test_script:
   - make
-
