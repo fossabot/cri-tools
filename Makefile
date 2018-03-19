@@ -44,9 +44,10 @@ ifndef GOPATH
 endif
 
 critest: check-gopath
-		$(GO) test -c \
+		$(GO) test -c -i \
+		-o $(GOBINDIR)/bin/critest \
 		$(PROJECT)/cmd/critest \
-		-o $(GOBINDIR)/bin/critest
+		-memprofilerate=0 -blockprofilerate=1
 
 crictl: check-gopath
 		$(GO) install \
@@ -57,7 +58,7 @@ clean:
 	find . -name \#\* -delete
 
 cross: check-gopath
-	GOOS=windows $(GO) build -o $(CURDIR)/_output/critest.exe \
+	GOOS=windows $(GO) test -c -i -o $(CURDIR)/_output/critest.exe \
 		$(PROJECT)/cmd/critest
 	GOOS=windows $(GO) build -o $(CURDIR)/_output/crictl.exe \
 		$(PROJECT)/cmd/crictl

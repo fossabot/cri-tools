@@ -20,6 +20,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"os/exec"
 	"path"
 	"testing"
 
@@ -35,6 +36,7 @@ import (
 
 var (
 	isBenchMark = flag.Bool("benchmark", false, "Run benchmarks instead of validation tests")
+	parallel    = flag.Int("parallel", 1, "Run benchmarks in parallel")
 )
 
 func init() {
@@ -64,6 +66,26 @@ func runTestSuite(t *testing.T) {
 	ginkgo.RunSpecsWithDefaultAndCustomReporters(t, "CRI validation", reporter)
 }
 
+func runParallelTestSuite(t *testing.T) {
+	criPath, err := exec.LookPath("critest")
+	if err != nil {
+		t.Errorf("Failed to lookup path of critest: %v", err)
+	}
+
+	args := []string{fmt.Sprintf("-nodes=%d", *parallel), criPath}
+	cmd := exec.Command("ginkgo", args...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err = cmd.Run()
+	if err != nil {
+		t.Errorf("Failed to run tests in paralllel: %v", err)
+	}
+}
+
 func TestCRISuite(t *testing.T) {
-	runTestSuite(t)
+	if *parallel == 1 {
+		runTestSuite(t)
+	} else {
+		runParallelTestSuite(t)
+	}
 }
