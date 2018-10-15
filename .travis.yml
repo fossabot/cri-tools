@@ -26,7 +26,7 @@ before_script:
     )
 
 install:
-    - if [ "TRAVIS_OS_NAME" == "windows" ]; then choco install -y make mingw; export PATH=/c/tools/mingw64/bin:/c/ProgramData/chocolatey/bin;"$PATH"; fi
+  - if [ "TRAVIS_OS_NAME" == "windows" ]; then choco install -y make mingw; export PATH="/c/tools/mingw64/bin:/c/ProgramData/chocolatey/bin;$PATH"; fi
   - make install.tools
 
 jobs:
