@@ -12,11 +12,13 @@ go_import_path: github.com/kubernetes-sigs/cri-tools
 services:
   - docker
 
-before_script:
+before_install:
   - |
     (
       set -Eeuo pipefail
-      if [ "$TRAVIS_OS_NAME" == "windows" ]; then
+      if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then
+        choco install -y make mingw
+        export PATH="/c/tools/mingw64/bin:/c/ProgramData/chocolatey/bin;$PATH"
         hack/install-docker.ps1
         hack/install-kubelet.ps1
       else
@@ -26,7 +28,6 @@ before_script:
     )
 
 install:
-  - if [ "TRAVIS_OS_NAME" == "windows" ]; then choco install -y make mingw; export PATH="/c/tools/mingw64/bin:/c/ProgramData/chocolatey/bin;$PATH"; fi
   - make install.tools
 
 jobs:
@@ -37,8 +38,8 @@ jobs:
         - make gofmt
     - stage: Build
       script:
-        -  if [ "$TRAVIS_OS_NAME" == "linux" ]; then make release; fi
+        -  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then make release; fi
     - stage: Test
       script:
         - make
-        - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo env PATH=$PATH GOPATH=$GOPATH hack/run-critest.sh; fi
+        - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo env PATH=$PATH GOPATH=$GOPATH hack/run-critest.sh; fi
