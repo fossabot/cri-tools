@@ -25,7 +25,8 @@ if ( ! "$env:TRAVIS_BRANCH".Equals("master") ) {
 
 # Build kubelet
 go build cmd\kubelet\kubelet.go
+cp .\kubelet.exe "$env:GOPATH/bin"
 
 # Dump version
 echo "Kubelet version:"
-.\kubelet.exe --version
+kubelet.exe --version
