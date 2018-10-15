@@ -1,18 +1,29 @@
 language: go
-sudo: required
-dist: trusty
 
 go:
   - "1.11.1"
+
+os:
+  - linux
+  - windows
 
 go_import_path: github.com/kubernetes-sigs/cri-tools
 
 services:
   - docker
 
-before_install:
-  - hack/install-docker.sh
-  - hack/install-kubelet.sh
+before_script:
+  - |
+    (
+      set -Eeuo pipefail
+      if [ "$TRAVIS_OS_NAME" == "windows" ]; then
+        hack/install-docker.ps1
+        hack/install-kubelet.ps1
+      else
+        hack/install-docker.sh
+        hack/install-kubelet.sh
+      fi
+    )
 
 install:
   - make install.tools
@@ -25,8 +36,8 @@ jobs:
         - make gofmt
     - stage: Build
       script:
-        - make release
+        -  if [ "$TRAVIS_OS_NAME" == "linux" ]; then make release; fi
     - stage: Test
       script:
         - make
-        - sudo env PATH=$PATH GOPATH=$GOPATH hack/run-critest.sh
+        - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo env PATH=$PATH GOPATH=$GOPATH hack/run-critest.sh; fi
