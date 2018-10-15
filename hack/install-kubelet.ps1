@@ -12,9 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Install essential tools
-choco install -y mingw
-
 # Install kubelet
 mkdir -p "$env:GOPATH/src/k8s.io"
 cd "$env:GOPATH/src/k8s.io"

@@ -26,6 +26,7 @@ before_script:
     )
 
 install:
+  - if [ "TRAVIS_OS_NAME" == "windows"]; then choco install -y make mingw; fi
   - make install.tools
 
 jobs:
