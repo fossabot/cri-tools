@@ -4,6 +4,7 @@ CLI and validation tools for Kubelet Container Runtime Interface (CRI) .
 
 [![Build Status](https://travis-ci.org/kubernetes-sigs/cri-tools.svg?branch=master)](https://travis-ci.org/kubernetes-sigs/cri-tools)
 [![Go Report Card](https://goreportcard.com/badge/github.com/kubernetes-sigs/cri-tools)](https://goreportcard.com/report/github.com/kubernetes-sigs/cri-tools)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffeiskyer%2Fcri-tools.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffeiskyer%2Fcri-tools?ref=badge_shield)
 
 ## What is the scope of this project?
 
@@ -83,3 +84,7 @@ Interested in contributing? Check out the [documentation](CONTRIBUTING.md).
 ## Code of conduct
 
 Participation in the Kubernetes community is governed by the [Kubernetes Code of Conduct](code-of-conduct.md).
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffeiskyer%2Fcri-tools.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffeiskyer%2Fcri-tools?ref=badge_large)
